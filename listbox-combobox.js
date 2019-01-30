@@ -11,16 +11,19 @@ class ListboxCombobox extends LitElement {
 
   static get properties() {
     return {
+      activeIndex: Number,
+      hasInlineAutocomplete: Boolean,
       label: String,
+      onShow: Function,
+      onHide: Function,
+      resultsCount: Number,
+      searchFn: Function,
       selected: String,
       shouldAutoSelect: {
         type: Boolean,
         reflect: true
       },
-      activeIndex: Number, 
-      resultsCount: Number,
       shown: Boolean,
-      hasInlineAutocomplete: Boolean
     };
   }
 
