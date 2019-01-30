@@ -323,7 +323,7 @@ class ListboxCombobox extends LitElement {
   selectItem(item) {
     if(item) {
       this.input.value = item.innerText;
-      this.set('selected', this.input.value);
+      this.selected = this.input.value;
       this.input.value = '';
       this.hideListbox();
     }
