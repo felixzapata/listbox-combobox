@@ -6,7 +6,7 @@ Web component based on the [ARIA 1.1 Combobox with Listbox Popup Examples](https
   <listbox-combobox search-fn="{{searchFn}}" label="{{label}}" id="demo1" should-auto-select></listbox-combobox>
 ```
 
-## TODO
+## TO-DO
 
 + Add tests.
 + Add custom CSS properties.
