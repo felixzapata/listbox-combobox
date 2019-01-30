@@ -7,8 +7,6 @@
 
   <title>listbox-combobox demo</title>
 
-  <!--script src="../node_modules/@webcomponents/webcomponents-loader.js"></script-->
-
   <script type="module">
     import '@polymer/iron-demo-helpers/demo-snippet.js';
     import '@polymer/polymer/lib/elements/dom-bind.js';
@@ -37,7 +35,7 @@
       <template>
         <dom-bind id="demo1">
           <template>
-            <listbox-combobox selected="{{value}}" search-fn="{{searchFn}}" label="{{label}}" id="demo1"></listbox-combobox>
+            <listbox-combobox selected="{{value}}" search-fn="{{searchFn}}" label="{{label}}" id="demoList1"></listbox-combobox>
             <p>The selected value is: {{value}}</p>
           </template>
         </dom-bind>
@@ -134,14 +132,14 @@
 
     <demo-snippet>
       <template>
-        <dom-bind id="demo1">
+        <dom-bind id="demo2">
           <template>
-            <listbox-combobox selected="{{value}}" search-fn="{{searchFn}}" label="{{label}}" id="demo1" should-auto-select></listbox-combobox>
+            <listbox-combobox selected="{{value}}" search-fn="{{searchFn}}" label="{{label}}" id="demoList2" should-auto-select></listbox-combobox>
             <p>The selected value is: {{value}}</p>
           </template>
         </dom-bind>
         <script>
-          var demo1 = document.querySelector('#demo1');
+          var demo1 = document.querySelector('#demo2');
           var FRUITS_AND_VEGGIES = [
             'Apple',
             'Artichoke',
@@ -217,9 +215,9 @@
             }
             return results;
           };
-          demo1.label = 'Choice 2 Fruit or Vegetable';
-          demo1.searchFn = searchVeggies;
-          demo1.value = '';
+          demo2.label = 'Choice 2 Fruit or Vegetable';
+          demo2.searchFn = searchVeggies;
+          demo2.value = '';
         </script>
       </template>
     </demo-snippet>
