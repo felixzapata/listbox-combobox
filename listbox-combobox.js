@@ -45,91 +45,98 @@ class ListboxCombobox extends LitElement {
 
   render() {
     return html`
-    :host {
-      display: flex;
-      position: relative;
-      z-index: 1;
-
-      --combobox-label: {
+    <style>
+      .annotate{
+        font-style: italic;
+        color: #366ED4;
+      }
+      
+      .hidden {
+        display: none;
+      }
+      
+      .combobox-wrapper {
+        display: inline-block;
+        position: relative;
+        font-size: 16px;
+      }
+      
+      .combobox-label {
         font-size: 14px;
         font-weight: bold;
         margin-right: 5px;
       }
-      --combobox-wrapper: {
-        width: 300px;
-        height: 40px;
-      };
-      --combobox-result-separator: #ccd3d7;
-      --combobox-focused-background: #00c0b5;
-      --combobox-focused-color: #fff;
-      --combobox-focused-background-hover: rgba(0, 192, 182, 0.5);
-      --combobox-focused-color-hover: #191919;
-
-      @apply --combobox-host;
-    }
-
-    .hidden {
-      display: none;
-    }
-
-    .combobox-label {
-      @apply --combobox-label;
-    }
-    .combobox-wrapper {
-      display: flex;
-      position: relative;
-      @apply --combobox-wrapper;
-    }
-      .combobox-wrapper div {
-        width: 100%;
-        height: 100%;
+      
+      .listbox, .grid {
+        min-width: 230px;
+        background: white;
+        border: 1px solid #ccc;
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        position: absolute;
+        top: 1.7em;
+        z-index: 1;
       }
+      
+      .listbox .result {
+        cursor: default;
+        margin: 0;
+      }
+      
+      .listbox .result:hover, .grid .result-row:hover {
+        background: rgb(139, 189, 225);
+      }
+      
+      .listbox .focused, .grid .focused {
+        background: rgb(139, 189, 225);
+      }
+      
+      .grid .focused-cell {
+        outline-style: dotted;
+        outline-color: green;
+      }
+      
       .combobox-wrapper input {
-        width: 100%;
-        height: 100%;
-        border: 1px solid #191919;
-        padding: 8px 20px;
-        box-sizing: border-box;
-        border-radius: 4px;
-        background: #fff;
-        outline: none;
-        @apply --combobox-input;
+        font-size: inherit;
+        border: 1px solid #aaa;
+        border-radius: 2px;
+        line-height: 1.5em;
+        padding-right: 30px;
+        width: 200px;
       }
-
-    .listbox {
-      position: absolute;
-      top: 100%;
-      left: 0;
-      width: 100%;
-      max-height: 200px;
-      margin: 0;
-      padding: 0;
-      list-style: none;
-      list-style-image: none;
-      background: #fff;;
-      border-bottom-left-radius: 4px;
-      border-bottom-right-radius: 4px;
-      overflow-y: auto;
-      @apply --combobox-listbox;
-    }
-    .listbox .result {
-      padding: 10px;
-      font: 400 18px/1 Arial;
-      color: #191919;
-      @apply --combobox-result;
-    }
-    .listbox .result + .result {
-      border-top: 1px solid var(--combobox-result-separator);
-    }
-
-    .listbox .result:hover {
-      background: var(--combobox-focused-background-hover);
-      color: var(--combobox-focused-color-hover);
-    }
-    .listbox .focused {
-      background: var(--combobox-focused-background);
-      color: var(--combobox-focused-color);
-    }
+      
+      .combobox-dropdown {
+        position: absolute;
+        right: 0;
+        top: 0;
+        padding: 0 0 2px;
+        height: 1.5em;
+        border-radius: 0 2px 2px 0;
+        border: 1px solid #aaa;
+      }
+      
+      .grid .result-row {
+        padding: 2px;
+        cursor: default;
+        margin: 0;
+      }
+      
+      .grid .result-cell {
+        display: inline-block;
+        cursor: default;
+        margin: 0;
+        padding: 0 5px;
+      }
+      
+      .grid .result-cell:last-child {
+        float: right;
+        font-size: 12px;
+        font-weight: 200;
+        color: #333;
+        line-height: 24px;
+      }
+    </style>
     <label for="ex1-input" id="ex1-label" class="combobox-label">${this.value}</label>
     <div class="combobox-wrapper">
       <div role="combobox" aria-expanded="false" aria-owns="ex1-listbox" aria-haspopup="listbox" id="ex1-combobox">
