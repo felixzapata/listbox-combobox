@@ -1,14 +1,22 @@
 {
   "name": "listbox-combobox",
   "version": "0.1.0",
-  "description": "",
+  "description": "Web component based on the ARIA 1.1 Combobox with Listbox Popup Examples",
   "main": "listbox-combobox.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/felixzapata/listbox-combobox.git"
   },
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "a11y",
+    "listbox",
+    "combo-box",
+    "web-components",
+    "web-component",
+    "polymer"
+  ],
+  "author": "Félix Zapata",
+  "license": "MIT",
   "bugs": {
     "url": "https://github.com/felixzapata/listbox-combobox/issues"
   },
