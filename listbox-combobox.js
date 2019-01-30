@@ -12,34 +12,15 @@ class ListboxCombobox extends LitElement {
   static get properties() {
     return {
       label: String,
-      selected: {
-        type: String,
-        notify: true
-      },
+      selected: String,
       shouldAutoSelect: {
         type: Boolean,
-        value: false,
-        reflectToAttribute: true
+        reflect: true
       },
-      searchFn: Function,
-      onShow: Function,
-      onHide: Function,
-      activeIndex: {
-        type: Number,
-        value: -1
-      },
-      resultsCount: {
-        type: Number,
-        value: 0
-      },
-      shown: {
-        type: Boolean,
-        value: false
-      },
-      hasInlineAutocomplete: {
-        type: Boolean,
-        value: false
-      }
+      activeIndex: Number, 
+      resultsCount: Number,
+      shown: Boolean,
+      hasInlineAutocomplete: Boolean
     };
   }
 
@@ -137,21 +118,25 @@ class ListboxCombobox extends LitElement {
         line-height: 24px;
       }
     </style>
-    <label for="ex1-input" id="ex1-label" class="combobox-label">${this.value}</label>
+    <label for="ex1-input" id="ex1-label" class="combobox-label">${this.label}</label>
     <div class="combobox-wrapper">
       <div role="combobox" aria-expanded="false" aria-owns="ex1-listbox" aria-haspopup="listbox" id="ex1-combobox">
         <input type="text" aria-autocomplete="list" aria-controls="ex1-listbox" id="ex1-input">
       </div>
-      <ul aria-labelledby="ex1-label" role="listbox" id="ex1-listbox" class="listbox hidden">
-      </ul>
+      <ul aria-labelledby="ex1-label" role="listbox" id="ex1-listbox" class="listbox hidden"></ul>
     </div>
   `;
   }
 
   constructor() {
     super();
-    this.onShow = function () { };
-    this.onHide = function () { };
+    this.shouldAutoSelect = false;
+    this.resultsCount = 0;
+    this.activeIndex = -1;
+
+    this.searchFn = function() {};
+    this.onShow = function () {};
+    this.onHide = function () {};
     this.KeyCode = {
       BACKSPACE: 8,
       TAB: 9,
@@ -170,12 +155,11 @@ class ListboxCombobox extends LitElement {
     };
   }
 
-  connectedCallback() {
-    super.connectedCallback();
+  firstUpdated() {
     this.combobox = this.shadowRoot.querySelector('#ex1-combobox');
     this.input = this.shadowRoot.querySelector('#ex1-input');
     this.listbox = this.shadowRoot.querySelector('#ex1-listbox');
-    this.set('hasInlineAutocomplete', this.input.getAttribute('aria-autocomplete') === 'both');
+    this.hasInlineAutocomplete = this.input.getAttribute('aria-autocomplete') === 'both';
     this.setupEvents();
   }
 
