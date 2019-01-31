@@ -325,6 +325,7 @@ class ListboxCombobox extends LitElement {
       this.input.value = item.innerText;
       this.selected = this.input.value;
       this.input.value = '';
+      this.dispatchEvent(new window.CustomEvent('value-changed', { detail: this.selected }));
       this.hideListbox();
     }
   }
