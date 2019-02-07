@@ -29,15 +29,13 @@
       <li>If the user does not choose a value from the listbox before moving focus outside the combobox, the value that the user typed, if any, becomes the value of the combobox.</li>
     </ol>
 
-    <demo-snippet>
+    <dom-bind id="demo1">
       <template>
-        <dom-bind id="demo1">
-          <template>
-            <listbox-combobox selected="{{value}}" search-fn="{{searchFn}}" label="{{label}}" id="demoList1"></listbox-combobox>
-            <p>The selected value is: {{value}}</p>
-          </template>
-        </dom-bind>
-        <script>
+        <listbox-combobox selected="{{value}}" search-fn="{{searchFn}}" label="{{label}}" id="demoList1"></listbox-combobox>
+        <p>The selected value is: {{value}}</p>
+      </template>
+      <script>
+        (function() {
           var demo1 = document.querySelector('#demo1');
           var FRUITS_AND_VEGGIES = [
             'Apple',
@@ -114,12 +112,20 @@
             }
             return results;
           };
+          var update = function(event) {
+            demo1.notifyPath('value', event.detail);
+          };
+          var callback = function() {
+            document.querySelector('#demoList1').addEventListener('value-changed', update);
+          };
           demo1.label = 'Choice 2 Fruit or Vegetable';
           demo1.searchFn = searchVeggies;
           demo1.value = '';
-        </script>
-      </template>
-    </demo-snippet>
+          document.addEventListener('WebComponentsReady', callback);
+        })();
+      </script>
+    </dom-bind>
+    
     <h2>Example 2: List Autocomplete with Automatic Selection</h2>
     <p>List autocomplete with automatic selection means that:</p>
     <ol>
@@ -128,16 +134,16 @@
       <li>The automatically selected suggestion becomes the value of the textbox when the combobox loses focus unless the user chooses a different suggestion or changes the character string in the textbox.</li>
     </ol>
 
-    <demo-snippet>
+
+    <dom-bind id="demo2">
       <template>
-        <dom-bind id="demo2">
-          <template>
-            <listbox-combobox selected="{{value}}" search-fn="{{searchFn}}" label="{{label}}" id="demoList2" should-auto-select></listbox-combobox>
-            <p>The selected value is: {{value}}</p>
-          </template>
-        </dom-bind>
-        <script>
-          var demo1 = document.querySelector('#demo2');
+        <listbox-combobox selected="{{value}}" search-fn="{{searchFn}}" label="{{label}}" id="demoList2" should-auto-select></listbox-combobox>
+        <p>The selected value is: {{value}}</p>
+      </template>
+
+      <script>
+        (function() {
+          var demo2 = document.querySelector('#demo2');
           var FRUITS_AND_VEGGIES = [
             'Apple',
             'Artichoke',
@@ -213,12 +219,20 @@
             }
             return results;
           };
+          var update = function(event) {
+            demo2.notifyPath('value', event.detail);
+          };
+          var callback = function() {
+            document.querySelector('#demoList2').addEventListener('value-changed', update);
+          };
           demo2.label = 'Choice 2 Fruit or Vegetable';
           demo2.searchFn = searchVeggies;
           demo2.value = '';
-        </script>
-      </template>
-    </demo-snippet>
+          document.addEventListener('WebComponentsReady', callback);
+        })();
+      </script>
+  </dom-bind>
+
 
   </div>
 </body>
