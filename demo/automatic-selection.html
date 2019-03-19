@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+  <title>listbox-combobox demo</title>
+
+  <script type="module">
+    import '@webcomponents/webcomponentsjs/webcomponents-loader.js';
+    import '@polymer/iron-demo-helpers/demo-snippet.js';
+    import '@polymer/polymer/lib/elements/dom-bind.js';
+  </script>
+
+  <script type="module" src="../listbox-combobox.js"></script>
+
+
+</head>
+
+<body>
+  <div class="vertical-section-container centered">
+    <h1>Example 2: List Autocomplete with Automatic Selection</h1>
+    <p>List autocomplete with automatic selection means that:</p>
+    <ol>
+      <li>When the listbox popup is displayed, it contains suggested values that complete or logically correspond to the characters typed in the textbox. In this implementation, the values in the listbox have names that start with the characters typed in the textbox.</li>
+      <li>The first suggestion is automatically highlighted as selected.</li>
+      <li>The automatically selected suggestion becomes the value of the textbox when the combobox loses focus unless the user chooses a different suggestion or changes the character string in the textbox.</li>
+    </ol>
+
+    <div id="demo1">
+      <listbox-combobox value="" label="Choice 2 Fruit or Vegetable" id="demoList1"></listbox-combobox>
+      <p>The selected value is: <span></span></p>
+      <script>
+        (function() {
+          var demo1 = document.querySelector('#demo1');
+          var list1 = document.querySelector('#demoList1');
+          var FRUITS_AND_VEGGIES = [
+            'Apple',
+            'Artichoke',
+            'Asparagus',
+            'Banana',
+            'Beets',
+            'Bell pepper',
+            'Broccoli',
+            'Brussels sprout',
+            'Cabbage',
+            'Carrot',
+            'Cauliflower',
+            'Celery',
+            'Chard',
+            'Chicory',
+            'Corn',
+            'Cucumber',
+            'Daikon',
+            'Date',
+            'Edamame',
+            'Eggplant',
+            'Elderberry',
+            'Fennel',
+            'Fig',
+            'Garlic',
+            'Grape',
+            'Honeydew melon',
+            'Iceberg lettuce',
+            'Jerusalem artichoke',
+            'Kale',
+            'Kiwi',
+            'Leek',
+            'Lemon',
+            'Mango',
+            'Mangosteen',
+            'Melon',
+            'Mushroom',
+            'Nectarine',
+            'Okra',
+            'Olive',
+            'Onion',
+            'Orange',
+            'Parship',
+            'Pea',
+            'Pear',
+            'Pineapple',
+            'Potato',
+            'Pumpkin',
+            'Quince',
+            'Radish',
+            'Rhubarb',
+            'Shallot',
+            'Spinach',
+            'Squash',
+            'Strawberry',
+            'Sweet potato',
+            'Tomato',
+            'Turnip',
+            'Ugli fruit',
+            'Victoria plum',
+            'Watercress',
+            'Watermelon',
+            'Yam',
+            'Zucchini'
+          ];
+          var searchVeggies = function(searchString) {
+            var results = [];
+            for(var i = 0; i < FRUITS_AND_VEGGIES.length; i++) {
+              var veggie = FRUITS_AND_VEGGIES[i].toLowerCase();
+              if(veggie.indexOf(searchString.toLowerCase()) === 0) {
+                results.push(FRUITS_AND_VEGGIES[i]);
+              }
+            }
+            return results;
+          };
+          var update = function(event) {
+            demo1.querySelector('span').innerHTML = event.detail;
+          };
+          var callback = function() {
+            demo1.addEventListener('value-changed', update);
+          };
+          list1.searchFn = searchVeggies;
+          list1.setAttribute('shouldAutoSelect', true);
+          document.addEventListener('WebComponentsReady', callback);
+        })();
+      </script>
+    </div>
+    
+    
+
+
+  </div>
+</body>
+
+</html>
