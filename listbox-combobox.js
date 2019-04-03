@@ -158,6 +158,22 @@ class ListboxCombobox extends LitElement {
     };
   }
 
+  setupEvents() {
+    this.checkHideHandler = this.checkHide.bind(this);
+    this.checkKeyHandler = this.checkKey.bind(this);
+    this.setActiveItemHandler = this.setActiveItem.bind(this);
+    this.checkShowHandler = this.checkShow.bind(this);
+    this.checkSelectionHandler = this.checkSelection.bind(this);
+    this.clickItemHandler = this.clickItem.bind(this);
+
+    document.body.addEventListener('click', this.checkHideHandler);
+    this.input.addEventListener('keyup', this.checkKeyHandler);
+    this.input.addEventListener('keydown', this.setActiveItemHandler);
+    this.input.addEventListener('focus', this.checkShowHandler);
+    this.input.addEventListener('blur', this.checkSelectionHandler);
+    this.listbox.addEventListener('click', this.clickItemHandler);
+  }
+
   firstUpdated() {
     this.combobox = this.shadowRoot.querySelector('#ex1-combobox');
     this.input = this.shadowRoot.querySelector('#ex1-input');
@@ -166,13 +182,14 @@ class ListboxCombobox extends LitElement {
     this.setupEvents();
   }
 
-  setupEvents() {
-    document.body.addEventListener('click', this.checkHide.bind(this));
-    this.input.addEventListener('keyup', this.checkKey.bind(this));
-    this.input.addEventListener('keydown', this.setActiveItem.bind(this));
-    this.input.addEventListener('focus', this.checkShow.bind(this));
-    this.input.addEventListener('blur', this.checkSelection.bind(this));
-    this.listbox.addEventListener('click', this.clickItem.bind(this));
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    document.body.removeEventListener('click', this.checkHideHandler);
+    this.input.removeEventListener('keyup', this.checkKeyHandler);
+    this.input.removeEventListener('keydown', this.setActiveItemHandler);
+    this.input.removeEventListener('focus', this.checkShowHandler);
+    this.input.removeEventListener('blur', this.checkSelectionHandler);
+    this.listbox.removeEventListener('click', this.clickItemHandler);
   }
 
   checkKey(evt) {
