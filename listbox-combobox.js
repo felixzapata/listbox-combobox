@@ -13,9 +13,9 @@ class ListboxCombobox extends LitElement {
     return {
       activeIndex: Number,
       hasInlineAutocomplete: Boolean,
+      items: Array,
       label: String,
       resultsCount: Number,
-      searchFn: Object,
       selected: String,
       shouldAutoSelect: {
         type: Boolean,
@@ -132,6 +132,7 @@ class ListboxCombobox extends LitElement {
   constructor() {
     super();
     this.shouldAutoSelect = false;
+    this.items = [];
     this.resultsCount = 0;
     this.activeIndex = -1;
 
@@ -212,9 +213,19 @@ class ListboxCombobox extends LitElement {
     }
   }
 
+  search(searchString) {
+    var callback = function(item) {
+      return item.toLowerCase().indexOf(searchString.toLowerCase()) === 0;
+    };
+    var returnValue = function(item) {
+      return item;
+    }
+    return this.items.filter(callback).map(returnValue);
+  }
+
   updateResults(shouldShowAll) {
     var searchString = this.input.value;
-    var results = this.searchFn(searchString);
+    var results = this.search(searchString);
 
     this.hideListbox();
 

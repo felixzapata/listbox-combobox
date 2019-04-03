@@ -20,10 +20,12 @@ Default: false
 
 It allows the user to choose the suggested option or not.
 
-### searchFn
-Type: `Object`
+### items
+Type: `Array`
 
-Custom function to filter values
+Default: []
+
+Items to show and filter
 
 ## Install the Polymer-CLI
 
