@@ -14,8 +14,7 @@
     "lit-element",
     "combo-box",
     "web-components",
-    "web-component",
-    "polymer"
+    "web-component"
   ],
   "author": "Félix Zapata",
   "license": "MIT",
@@ -24,8 +23,6 @@
   },
   "homepage": "https://github.com/felixzapata/listbox-combobox#readme",
   "devDependencies": {
-    "@polymer/iron-demo-helpers": "^3.0.2",
-    "@polymer/polymer": "^3.1.0",
     "eslint": "^5.6.1",
     "eslint-config-airbnb": "^17.1.0",
     "eslint-plugin-html": "^4.0.6",
