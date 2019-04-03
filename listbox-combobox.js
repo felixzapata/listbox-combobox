@@ -136,7 +136,6 @@ class ListboxCombobox extends LitElement {
     this.resultsCount = 0;
     this.activeIndex = -1;
 
-    this.searchFn = function() {};
     this.KeyCode = {
       BACKSPACE: 8,
       TAB: 9,
