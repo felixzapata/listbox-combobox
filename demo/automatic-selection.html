@@ -29,7 +29,7 @@
     </ol>
 
     <div id="demo1">
-      <listbox-combobox value="" label="Choice 2 Fruit or Vegetable" id="demoList1"></listbox-combobox>
+      <listbox-combobox label="Choice 2 Fruit or Vegetable" id="demoList1" shouldautoselect></listbox-combobox>
       <p>The selected value is: <span></span></p>
       <script>
         (function() {
@@ -117,7 +117,6 @@
             demo1.addEventListener('value-changed', update);
           };
           list1.searchFn = searchVeggies;
-          list1.setAttribute('shouldAutoSelect', true);
           document.addEventListener('WebComponentsReady', callback);
         })();
       </script>
