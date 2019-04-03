@@ -21,7 +21,7 @@ Default: false
 It allows the user to choose the suggested option or not.
 
 ### searchFn
-Type: `Function`
+Type: `Object`
 
 Custom function to filter values
 
