@@ -14,10 +14,8 @@ class ListboxCombobox extends LitElement {
       activeIndex: Number,
       hasInlineAutocomplete: Boolean,
       label: String,
-      onShow: Function,
-      onHide: Function,
       resultsCount: Number,
-      searchFn: Function,
+      searchFn: Object,
       selected: String,
       shouldAutoSelect: {
         type: Boolean,
@@ -138,8 +136,6 @@ class ListboxCombobox extends LitElement {
     this.activeIndex = -1;
 
     this.searchFn = function() {};
-    this.onShow = function () {};
-    this.onHide = function () {};
     this.KeyCode = {
       BACKSPACE: 8,
       TAB: 9,
@@ -244,7 +240,6 @@ class ListboxCombobox extends LitElement {
       this.combobox.setAttribute('aria-expanded', 'true');
       this.resultsCount = results.length;
       this.shown = true;
-      this.onShow();
     }
   }
 
@@ -369,7 +364,6 @@ class ListboxCombobox extends LitElement {
       'aria-activedescendant',
       ''
     );
-    this.onHide();
   }
 
   checkSelection() {
