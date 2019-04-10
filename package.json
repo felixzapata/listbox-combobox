@@ -3,6 +3,7 @@
   "version": "0.1.0",
   "description": "Web component based on the ARIA 1.1 Combobox with Listbox Popup Examples",
   "main": "listbox-combobox.js",
+  "module": "listbox-combobox.js",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/felixzapata/listbox-combobox.git"
