@@ -4,31 +4,29 @@
  * https://www.w3.org/TR/wai-aria-practices/examples/combobox/aria1.1pattern/listbox-combo.html
  *
  */
-import { LitElement, html } from 'lit-element';
+import { LitElement, css, html } from 'lit-element';
 
 class ListboxCombobox extends LitElement {
-  static get is() { return 'listbox-combobox'; }
 
   static get properties() {
     return {
-      activeIndex: Number,
-      hasInlineAutocomplete: Boolean,
-      items: Array,
-      label: String,
-      resultsCount: Number,
-      selected: String,
+      activeIndex: { type: Number },
+      hasInlineAutocomplete: { type: Boolean },
+      items: { type: Array },
+      label: { type: String },
+      resultsCount: { type: Number },
+      selected: { type: String },
       shouldAutoSelect: {
         type: Boolean,
         reflect: true
       },
-      shown: Boolean,
+      shown: { type: Boolean }
     };
   }
 
-  render() {
-    return html`
-    <style>
-      .annotate{
+  static get styles() {
+    return css`
+    .annotate{
         font-style: italic;
         color: #366ED4;
       }
@@ -118,16 +116,26 @@ class ListboxCombobox extends LitElement {
         color: #333;
         line-height: 24px;
       }
-    </style>
+    `;
+  }
+
+  render() {
+    return html`
     <label for="ex1-input" id="ex1-label" class="combobox-label">${this.label}</label>
     <div class="combobox-wrapper">
       <div role="combobox" aria-expanded="false" aria-owns="ex1-listbox" aria-haspopup="listbox" id="ex1-combobox">
-        <input type="text" aria-autocomplete="list" aria-controls="ex1-listbox" id="ex1-input">
+        <input type="text"
+          @keyup="${this.checkKeyHandler}"
+          @keydown="${this.setActiveItemHandler}"
+          @focus="${this.checkShowHandler}"
+          @blur="${this.checkSelectionHandler}"
+        aria-autocomplete="list" aria-controls="ex1-listbox" id="ex1-input">
       </div>
-      <ul aria-labelledby="ex1-label" role="listbox" id="ex1-listbox" class="listbox hidden"></ul>
+      <ul aria-labelledby="ex1-label" role="listbox" id="ex1-listbox" class="listbox hidden" @click="${this.clickItemHandler}"></ul>
     </div>
   `;
   }
+
 
   constructor() {
     super();
@@ -161,13 +169,7 @@ class ListboxCombobox extends LitElement {
     this.checkShowHandler = this.checkShow.bind(this);
     this.checkSelectionHandler = this.checkSelection.bind(this);
     this.clickItemHandler = this.clickItem.bind(this);
-
     document.body.addEventListener('click', this.checkHideHandler);
-    this.input.addEventListener('keyup', this.checkKeyHandler);
-    this.input.addEventListener('keydown', this.setActiveItemHandler);
-    this.input.addEventListener('focus', this.checkShowHandler);
-    this.input.addEventListener('blur', this.checkSelectionHandler);
-    this.listbox.addEventListener('click', this.clickItemHandler);
   }
 
   firstUpdated() {
@@ -181,11 +183,6 @@ class ListboxCombobox extends LitElement {
   disconnectedCallback() {
     super.disconnectedCallback();
     document.body.removeEventListener('click', this.checkHideHandler);
-    this.input.removeEventListener('keyup', this.checkKeyHandler);
-    this.input.removeEventListener('keydown', this.setActiveItemHandler);
-    this.input.removeEventListener('focus', this.checkShowHandler);
-    this.input.removeEventListener('blur', this.checkSelectionHandler);
-    this.listbox.removeEventListener('click', this.clickItemHandler);
   }
 
   checkKey(evt) {
@@ -401,4 +398,4 @@ class ListboxCombobox extends LitElement {
   }
 }
 
-window.customElements.define(ListboxCombobox.is, ListboxCombobox);
+window.customElements.define('listbox-combobox', ListboxCombobox);
