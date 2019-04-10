@@ -17,6 +17,7 @@ class ListboxCombobox extends LitElement {
       resultsCount: { type: Number },
       selected: { type: String },
       shouldAutoSelect: {
+        attribute: 'should-auto-select',
         type: Boolean,
         reflect: true
       },
