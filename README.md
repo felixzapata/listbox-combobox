@@ -8,6 +8,12 @@ LitElement component based on the [ARIA 1.1 Combobox with Listbox Popup Examples
   <listbox-combobox label="my awesome label" id="demo1" should-auto-select></listbox-combobox>
 ```
 
+## Installation
+
+```sh
+$ npm install listbox-combobox --save
+```
+
 ## TO-DO
 
 + Add tests.
