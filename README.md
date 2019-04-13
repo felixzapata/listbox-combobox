@@ -2,7 +2,7 @@
 
 [![Published on webcomponents.org](https://img.shields.io/badge/webcomponents.org-published-blue.svg)](https://www.webcomponents.org/element/listbox-combobox)
 
-Web component based on the [ARIA 1.1 Combobox with Listbox Popup Examples](https://www.w3.org/TR/wai-aria-practices/examples/combobox/aria1.1pattern/listbox-combo.html).
+LitElement component based on the [ARIA 1.1 Combobox with Listbox Popup Examples](https://www.w3.org/TR/wai-aria-practices/examples/combobox/aria1.1pattern/listbox-combo.html).
 
 ```html
   <listbox-combobox label="my awesome label" id="demo1" should-auto-select></listbox-combobox>
