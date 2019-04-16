@@ -1,4 +1,5 @@
 .gitignore
 .eslintrc
 rollup.config.js
+.editorconfig
 demo
