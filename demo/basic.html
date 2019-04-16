@@ -7,41 +7,93 @@
 
   <title>listbox-combobox demo</title>
 
-  <!--
-    If you are loading es5 code you will need
-    custom-elements-es5-loader to make the element work in
-    es6-capable browsers.
-
-    If you are not loading es5 code, you don't need
-    custom-elements-es5-loader.
-  -->
-  <!--
-  <script src="./path-to/custom-elements-es5-loader.js"></script>
-  -->
-
-  <script type="module">
-    import '@webcomponents/webcomponentsjs/webcomponents-loader.js';
-  </script>
-
-  <!-- Load component when polyfills are definitely ready -->
-  <script type="module">
-    // Take care of cases in which the browser runs this
-    // script before it has finished running
-    // webcomponents-loader.js (e.g. Firefox script execution order)
-    window.WebComponents = window.WebComponents || {
-      waitFor(cb){ addEventListener('WebComponentsReady', cb) }
-    }
-
-    WebComponents.waitFor(async () => {
-      import('../listbox-combobox.js');
+  <script>
+    document.addEventListener("DOMContentLoaded", (event) => {
+      let demo1 = document.querySelector('#demo1');
+      let list1 = document.querySelector('#demoList1');
+      const FRUITS_AND_VEGGIES = [
+        'Apple',
+        'Artichoke',
+        'Asparagus',
+        'Banana',
+        'Beets',
+        'Bell pepper',
+        'Broccoli',
+        'Brussels sprout',
+        'Cabbage',
+        'Carrot',
+        'Cauliflower',
+        'Celery',
+        'Chard',
+        'Chicory',
+        'Corn',
+        'Cucumber',
+        'Daikon',
+        'Date',
+        'Edamame',
+        'Eggplant',
+        'Elderberry',
+        'Fennel',
+        'Fig',
+        'Garlic',
+        'Grape',
+        'Honeydew melon',
+        'Iceberg lettuce',
+        'Jerusalem artichoke',
+        'Kale',
+        'Kiwi',
+        'Leek',
+        'Lemon',
+        'Mango',
+        'Mangosteen',
+        'Melon',
+        'Mushroom',
+        'Nectarine',
+        'Okra',
+        'Olive',
+        'Onion',
+        'Orange',
+        'Parship',
+        'Pea',
+        'Pear',
+        'Pineapple',
+        'Potato',
+        'Pumpkin',
+        'Quince',
+        'Radish',
+        'Rhubarb',
+        'Shallot',
+        'Spinach',
+        'Squash',
+        'Strawberry',
+        'Sweet potato',
+        'Tomato',
+        'Turnip',
+        'Ugli fruit',
+        'Victoria plum',
+        'Watercress',
+        'Watermelon',
+        'Yam',
+        'Zucchini'
+      ];
+      const update = function(event) {
+        demo1.querySelector('span').innerHTML = event.detail;
+      };
+      list1.items = FRUITS_AND_VEGGIES;
+      demo1.addEventListener('value-changed', update);
     });
   </script>
-
 
 </head>
 
 <body>
-  <div class="vertical-section-container centered">
+
+<div id="demo"></div>
+
+<script type="module">
+  import { html, render } from 'https://unpkg.com/lit-html?module'; // workaround until owc-dev-server supports html
+  import '../src/listbox-combobox.js';
+  render(html`
     <h1>Example 1: List Autocomplete with Manual Selection</h1>
     <p>List autocomplete with manual selection means that:</p>
     <ol>
@@ -53,85 +105,10 @@
     <div id="demo1">
       <listbox-combobox label="Choice 2 Fruit or Vegetable" id="demoList1"></listbox-combobox>
       <p>The selected value is: <span></span></p>
-      <script>
-        (function() {
-          var demo1 = document.querySelector('#demo1');
-          var list1 = document.querySelector('#demoList1');
-          var FRUITS_AND_VEGGIES = [
-            'Apple',
-            'Artichoke',
-            'Asparagus',
-            'Banana',
-            'Beets',
-            'Bell pepper',
-            'Broccoli',
-            'Brussels sprout',
-            'Cabbage',
-            'Carrot',
-            'Cauliflower',
-            'Celery',
-            'Chard',
-            'Chicory',
-            'Corn',
-            'Cucumber',
-            'Daikon',
-            'Date',
-            'Edamame',
-            'Eggplant',
-            'Elderberry',
-            'Fennel',
-            'Fig',
-            'Garlic',
-            'Grape',
-            'Honeydew melon',
-            'Iceberg lettuce',
-            'Jerusalem artichoke',
-            'Kale',
-            'Kiwi',
-            'Leek',
-            'Lemon',
-            'Mango',
-            'Mangosteen',
-            'Melon',
-            'Mushroom',
-            'Nectarine',
-            'Okra',
-            'Olive',
-            'Onion',
-            'Orange',
-            'Parship',
-            'Pea',
-            'Pear',
-            'Pineapple',
-            'Potato',
-            'Pumpkin',
-            'Quince',
-            'Radish',
-            'Rhubarb',
-            'Shallot',
-            'Spinach',
-            'Squash',
-            'Strawberry',
-            'Sweet potato',
-            'Tomato',
-            'Turnip',
-            'Ugli fruit',
-            'Victoria plum',
-            'Watercress',
-            'Watermelon',
-            'Yam',
-            'Zucchini'
-          ];
-          var update = function(event) {
-            demo1.querySelector('span').innerHTML = event.detail;
-          };
-          list1.items = FRUITS_AND_VEGGIES;
-          demo1.addEventListener('value-changed', update);
-        })();
-      </script>
     </div>
+  `, document.querySelector('#demo'));
+</script>
 
-  </div>
 </body>
 
 </html>

@@ -1,4 +1,4 @@
 .gitignore
 .eslintrc
+rollup.config.js
 demo
-polymer.json

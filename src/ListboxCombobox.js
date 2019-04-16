@@ -1,12 +1,7 @@
-/**
- * `listbox-combobox`
- * LitElement component based on the ARIA 1.1 Combobox with Listbox Popup Examples
- * https://www.w3.org/TR/wai-aria-practices/examples/combobox/aria1.1pattern/listbox-combo.html
- *
- */
-import { LitElement, css, html } from 'lit-element';
+import { html, css, LitElement } from 'lit-element';
+import {listboxComboboxStyle} from './listbox-combobox.style.js';
 
-class ListboxCombobox extends LitElement {
+export default class ListboxCombobox extends LitElement {
 
   static get properties() {
     return {
@@ -25,103 +20,9 @@ class ListboxCombobox extends LitElement {
     };
   }
 
-  static get styles() {
-    return css`
-    .annotate{
-        font-style: italic;
-        color: #366ED4;
-      }
-      
-      .hidden {
-        display: none;
-      }
-      
-      .combobox-wrapper {
-        display: inline-block;
-        position: relative;
-        font-size: 16px;
-      }
-      
-      .combobox-label {
-        font-size: 14px;
-        font-weight: bold;
-        margin-right: 5px;
-      }
-      
-      .listbox, .grid {
-        min-width: 230px;
-        background: white;
-        border: 1px solid #ccc;
-        list-style: none;
-        margin: 0;
-        padding: 0;
-        position: absolute;
-        top: 1.7em;
-        z-index: 1;
-      }
-      
-      .listbox .result {
-        cursor: default;
-        margin: 0;
-      }
-      
-      .listbox .result:hover, .grid .result-row:hover {
-        background: rgb(139, 189, 225);
-      }
-      
-      .listbox .focused, .grid .focused {
-        background: rgb(139, 189, 225);
-      }
-      
-      .grid .focused-cell {
-        outline-style: dotted;
-        outline-color: green;
-      }
-      
-      .combobox-wrapper input {
-        font-size: inherit;
-        border: 1px solid #aaa;
-        border-radius: 2px;
-        line-height: 1.5em;
-        padding-right: 30px;
-        width: 200px;
-      }
-      
-      .combobox-dropdown {
-        position: absolute;
-        right: 0;
-        top: 0;
-        padding: 0 0 2px;
-        height: 1.5em;
-        border-radius: 0 2px 2px 0;
-        border: 1px solid #aaa;
-      }
-      
-      .grid .result-row {
-        padding: 2px;
-        cursor: default;
-        margin: 0;
-      }
-      
-      .grid .result-cell {
-        display: inline-block;
-        cursor: default;
-        margin: 0;
-        padding: 0 5px;
-      }
-      
-      .grid .result-cell:last-child {
-        float: right;
-        font-size: 12px;
-        font-weight: 200;
-        color: #333;
-        line-height: 24px;
-      }
-    `;
-  }
-
   render() {
     return html`
+    <style>${listboxComboboxStyle}</style>
     <label for="ex1-input" id="ex1-label" class="combobox-label">${this.label}</label>
     <div class="combobox-wrapper">
       <div role="combobox" aria-expanded="false" aria-owns="ex1-listbox" aria-haspopup="listbox" id="ex1-combobox">
@@ -399,4 +300,3 @@ class ListboxCombobox extends LitElement {
   }
 }
 
-window.customElements.define('listbox-combobox', ListboxCombobox);
