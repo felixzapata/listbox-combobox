@@ -8,9 +8,9 @@
   <title>listbox-combobox demo</title>
 
   <script>
-    document.addEventListener("DOMContentLoaded", (event) => {
-      let demo1 = document.querySelector('#demo1');
-      let list1 = document.querySelector('#demoList1');
+    document.addEventListener('DOMContentLoaded', () => {
+      const demo = document.querySelector('#demo');
+      const list1 = document.querySelector('#demoList1');
       const FRUITS_AND_VEGGIES = [
         'Apple',
         'Artichoke',
@@ -77,10 +77,10 @@
         'Zucchini'
       ];
       const update = function(event) {
-        demo1.querySelector('span').innerHTML = event.detail;
+        demo.querySelector('span').innerHTML = event.detail;
       };
       list1.items = FRUITS_AND_VEGGIES;
-      demo1.addEventListener('value-changed', update);
+      demo.addEventListener('value-changed', update);
     });
   </script>
 
@@ -102,10 +102,9 @@
       <li>If the user does not choose a value from the listbox before moving focus outside the combobox, the value that the user typed, if any, becomes the value of the combobox.</li>
     </ol>
 
-    <div id="demo1">
-      <listbox-combobox label="Choice 2 Fruit or Vegetable" id="demoList1"></listbox-combobox>
-      <p>The selected value is: <span></span></p>
-    </div>
+    <listbox-combobox label="Choice 2 Fruit or Vegetable" id="demoList1"></listbox-combobox>
+    <p>The selected value is: <span></span></p>
+    
   `, document.querySelector('#demo'));
 </script>
 
