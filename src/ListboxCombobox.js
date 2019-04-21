@@ -1,4 +1,4 @@
-import { html, css, LitElement } from 'lit-element';
+import { html, LitElement } from 'lit-element';
 import {listboxComboboxStyle} from './listbox-combobox.style.js';
 
 export default class ListboxCombobox extends LitElement {
